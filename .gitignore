@@ -1,0 +1,60 @@
+# Secrets / env
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
+secrets/
+id_rsa*
+
+# Python
+.venv/
+venv/
+ENV/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+pip-wheel-metadata/
+
+# Test / lint
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+
+# ROS 2 / colcon
+install/
+log/
+build/
+.colcon/
+
+# Gazebo / sim artifacts
+*.log
+.gazebo/
+~/.gazebo/
+models/**/*.bin
+worlds/**/*.cache
+
+# Docker
+.dockerignore.bak
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+*.swp
+*~
+
+# gitleaks
+.gitleaks-report.json

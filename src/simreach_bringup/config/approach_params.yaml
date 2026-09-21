@@ -1,0 +1,18 @@
+simreach_approach:
+  ros__parameters:
+    image_topic: /camera/image_raw
+    cmd_topic: /cmd_vel
+    max_speed_mps: 0.05
+    max_lateral_mps: 0.03
+    max_vertical_mps: 0.03
+    lost_target_frames_estop: 5
+    ky: 0.08
+    kz: 0.08
+    approach_speed: 0.02
+    pixel_tol: 8.0
+    image_width: 640
+    image_height: 480
+    fx: 500.0
+    fy: 500.0
+    cx: 320.0
+    cy: 240.0

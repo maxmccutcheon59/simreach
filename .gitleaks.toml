@@ -1,0 +1,8 @@
+title = "simreach"
+
+[allowlist]
+description = "Synthetic fixtures and docs only"
+paths = [
+  '''tests/.*''',
+  '''docs/.*''',
+]
