@@ -1,7 +1,7 @@
 # SimReach — ROS 2 Humble + Gazebo Classic (sim-first). No hardware required.
-# Build:  docker build -t simreach:v0.1.0 .
-# Test:   docker run --rm simreach:v0.1.0 pytest -q
-# Shell:  docker run --rm -it simreach:v0.1.0 bash
+# Build:  docker build -t simreach:v0.2.0 .
+# Test:   docker run --rm simreach:v0.2.0 pytest -q
+# Shell:  docker run --rm -it simreach:v0.2.0 bash
 #
 # GUI Gazebo needs display forwarding on the host (not available in all CI boxes).
 # Unit-testable vision/control logic runs without Gazebo.

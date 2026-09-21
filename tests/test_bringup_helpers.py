@@ -3,6 +3,8 @@
 import sys
 from pathlib import Path
 
+import pytest
+
 # Allow importing the bringup package from src layout without installing ament.
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src" / "simreach_bringup"))
@@ -14,7 +16,6 @@ from simreach_bringup.approach_node import (  # noqa: E402
 
 
 def test_rgb_bytes_to_frame():
-    # 2x2 RGB image
     data = bytes(
         [
             255, 0, 0,
@@ -29,11 +30,13 @@ def test_rgb_bytes_to_frame():
 
 
 def test_rgb_bytes_rejects_short_buffer():
-    try:
+    with pytest.raises(ValueError):
         rgb_bytes_to_frame(b"\x00\x01", height=2, width=2)
-        assert False, "expected ValueError"
-    except ValueError:
-        pass
+
+
+def test_rgb_bytes_rejects_nonpositive_dims():
+    with pytest.raises(ValueError):
+        rgb_bytes_to_frame(b"\x00" * 12, height=0, width=2)
 
 
 def test_build_controller_from_params():

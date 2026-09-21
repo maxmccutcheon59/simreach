@@ -6,8 +6,9 @@
 ## Product posture
 
 - **Sim-first educational robotics scaffold:** ROS 2 package layout + Gazebo world stub + unit-testable vision-guided approach logic.
-- **No hardware purchases** required or authorized by this repo (see `BOM.md` research-only list).
+- **No hardware purchases** required or authorized by this repo (see `BOM.md` research-only list; **$0** for v0.2.0).
 - **No SaaS, accounts, telemetry, or intentional PII collection.**
+- Recorded-run JSONL logs contain only synthetic geometry / twist numbers — no camera of people by default.
 - Portfolio project for Max McCutcheon (`@maxmccutcheon59`).
 
 ## Data inventory
@@ -16,8 +17,9 @@
 |------|-------------------------|---------|---------|
 | End-user PII | **No** | — | — |
 | Camera frames (if operator runs ROS node) | Processed in-memory when subscribed | Not retained by default | Local ROS graph only |
+| Recorded-run JSONL | Operator-chosen local file | Local disk if `-o` used | Not uploaded by this project |
 | Telemetry / analytics | **None** | — | — |
-| Payment / BOM purchases | **None** (do not buy for v0.1.0) | — | — |
+| Payment / BOM purchases | **None** (do not buy for v0.2.0) | — | — |
 
 ## Privacy / regulatory flags
 

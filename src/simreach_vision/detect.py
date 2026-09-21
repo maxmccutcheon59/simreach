@@ -44,6 +44,12 @@ def detect_color_blob(
 
     Default band targets a bright-red marker in Gazebo/sim screenshots.
     Returns found=False if area < min_area.
+
+    Notes
+    -----
+    - Frames must be rectangular (equal row lengths); ragged rows raise ValueError.
+    - Empty / zero-size frames return found=False.
+    - Score grows with area relative to ``max(min_area * 5, 100)``, capped at 1.0.
     """
     if not frame or not frame[0]:
         return Detection(found=False, u=0.0, v=0.0, area=0, score=0.0)
@@ -97,3 +103,28 @@ def paint_rect(
             frame[v][u][0] = color[0]
             frame[v][u][1] = color[1]
             frame[v][u][2] = color[2]
+
+
+def paint_disk(
+    frame: list[list[list[int]]],
+    cu: int,
+    cv: int,
+    radius: int,
+    color: RGB,
+) -> None:
+    """
+    Fill a filled disk of integer radius centered at (cu, cv), clipped to frame.
+
+    Useful for more realistic marker fixtures than axis-aligned rectangles.
+    """
+    if radius < 0:
+        raise ValueError("radius must be non-negative")
+    h = len(frame)
+    w = len(frame[0])
+    r2 = radius * radius
+    for v in range(max(0, cv - radius), min(h, cv + radius + 1)):
+        for u in range(max(0, cu - radius), min(w, cu + radius + 1)):
+            if (u - cu) * (u - cu) + (v - cv) * (v - cv) <= r2:
+                frame[v][u][0] = color[0]
+                frame[v][u][1] = color[1]
+                frame[v][u][2] = color[2]

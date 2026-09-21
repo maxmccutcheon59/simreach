@@ -4,6 +4,9 @@ Image-based visual approach controller (IBVS-lite).
 Maps image-plane error of a detected marker to a small Cartesian twist so a
 simulated end-effector / camera can center and advance toward the target.
 Pure Python — no ROS, Gazebo, or OpenCV required.
+
+See ``docs/CONTROLLER.md`` for coordinate conventions, state machine, and
+tuning guidance.
 """
 
 from __future__ import annotations
@@ -40,10 +43,19 @@ class ApproachController:
     """
     Proportional IBVS-style controller.
 
-    Convention (camera looking along +X toward the workspace):
-    - Image error eu (right of center) -> negative vy (slide left), gain ky
-    - Image error ev (below center) -> positive vz, gain kz
-    - When centered within pixel_tol, advance with +vx = approach_speed
+    Coordinate convention (camera looking along +X toward the workspace):
+    - Image error ``eu`` (target right of center) → negative ``vy`` (slide left), gain ``ky``
+    - Image error ``ev`` (target below center) → positive ``vz``, gain ``kz``
+    - When centered within ``pixel_tol``, advance with ``+vx = approach_speed``
+
+    State machine (``ApproachCommand.reason``):
+    - ``align`` — lateral/vertical correction; ``vx`` held at 0
+    - ``approach`` — target centered; advance at ``approach_speed`` (clamped)
+    - ``target_lost_hold`` — miss below e-stop threshold; zero twist, wait
+    - ``lost_target_estop`` — miss streak ≥ limit; soft e-stop (all zeros)
+
+    Soft safety (``SafetyLimits``) always clamps commanded speeds. This is a
+    research aid — not certified functional safety. See ``SECURITY.md``.
     """
 
     K: CameraIntrinsics
@@ -61,8 +73,16 @@ class ApproachController:
             raise ValueError("approach_speed must be positive")
         if self.pixel_tol <= 0:
             raise ValueError("pixel_tol must be positive")
+        if self.min_score < 0:
+            raise ValueError("min_score must be non-negative")
 
     def step(self, det: Detection, state: ApproachState) -> ApproachCommand:
+        """
+        Consume one detection and update ``state``; return a clamped command.
+
+        Low-score detections (``det.score < min_score``) are treated as lost,
+        same as ``found=False``.
+        """
         state.frames += 1
 
         if not det.found or det.score < self.min_score:

@@ -1,0 +1,8 @@
+{"frame":0,"marker_u":240,"marker_v":120,"found":true,"det_u":240.0,"det_v":120.0,"area":317,"score":1.0,"vx":0.0,"vy":-0.02564,"vz":0.0,"reason":"align","estop":false,"lost_streak":0}
+{"frame":1,"marker_u":213,"marker_v":120,"found":true,"det_u":213.0,"det_v":120.0,"area":317,"score":1.0,"vx":0.0,"vy":-0.01699,"vz":0.0,"reason":"align","estop":false,"lost_streak":0}
+{"frame":2,"marker_u":192,"marker_v":120,"found":true,"det_u":192.0,"det_v":120.0,"area":317,"score":1.0,"vx":0.0,"vy":-0.01026,"vz":0.0,"reason":"align","estop":false,"lost_streak":0}
+{"frame":3,"marker_u":176,"marker_v":120,"found":true,"det_u":176.0,"det_v":120.0,"area":317,"score":1.0,"vx":0.0,"vy":-0.00513,"vz":0.0,"reason":"align","estop":false,"lost_streak":0}
+{"frame":4,"marker_u":164,"marker_v":120,"found":true,"det_u":164.0,"det_v":120.0,"area":317,"score":1.0,"vx":0.02,"vy":0.0,"vz":0.0,"reason":"approach","estop":false,"lost_streak":0}
+{"frame":5,"marker_u":160,"marker_v":120,"found":true,"det_u":160.0,"det_v":120.0,"area":317,"score":1.0,"vx":0.02,"vy":0.0,"vz":0.0,"reason":"approach","estop":false,"lost_streak":0}
+{"frame":6,"marker_u":160,"marker_v":120,"found":true,"det_u":160.0,"det_v":120.0,"area":317,"score":1.0,"vx":0.02,"vy":0.0,"vz":0.0,"reason":"approach","estop":false,"lost_streak":0}
+{"frame":7,"marker_u":160,"marker_v":120,"found":true,"det_u":160.0,"det_v":120.0,"area":317,"score":1.0,"vx":0.02,"vy":0.0,"vz":0.0,"reason":"approach","estop":false,"lost_streak":0}

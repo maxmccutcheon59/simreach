@@ -1,6 +1,6 @@
 # Bill of Materials — Future cheap arm (RESEARCH ONLY)
 
-> **DO NOT BUY for SimReach v0.1.0.**  
+> **DO NOT BUY for SimReach v0.2.0 ($0 hardware).**  
 > This file is a planning reference for a later milestone. No purchases are authorized or required by this repository. Prices are approximate public street prices (USD, 2026 research) and will change — verify before any future purchase decision by a human owner.
 
 ## Goal (future)
@@ -21,9 +21,9 @@ A low-cost, tabletop 4–6 DOF arm + wrist camera suitable for repeating the **s
 | 5–12 V PSU | Arm power | Matched to kit spec with headroom | 15–40 | Correct polarity/current; fused |
 | E-stop button | Human safety | NC mushroom switch in series with motor power | 10–25 | Hard power interrupt — software e-stop is not enough on hardware |
 | Wiring / mounts | Integration | Breadboard-quality only for bring-up | 10–30 | Strain relief; no dangling power leads |
-| Optional depth cam | Later perception | Not required for color-blob v0.1 approach | 50–200+ | Defer |
+| Optional depth cam | Later perception | Not required for color-blob approach | 50–200+ | Defer |
 
-**Rough future total if starting from zero:** ~$150–500. **Recommended v0.1 path:** $0 — simulation + unit tests only.
+**Rough future total if starting from zero:** ~$150–500. **Recommended v0.2.0 path:** $0 — simulation, unit tests, and `scripts/recorded_run.py` only.
 
 ## Explicit non-goals
 
@@ -33,7 +33,7 @@ A low-cost, tabletop 4–6 DOF arm + wrist camera suitable for repeating the **s
 
 ## When hardware is reconsidered
 
-1. Sim approach demos reliably in Gazebo/Docker.
+1. Sim approach demos reliably (recorded-run and/or Gazebo/Docker).
 2. Human writes a hardware safety checklist (e-stop, workspace fencing, torque limits).
 3. Budget and shipping address confirmed by Max — not by an agent.
 4. Update this BOM with exact SKUs, dates, and receipts in a private note (do not commit payment data).

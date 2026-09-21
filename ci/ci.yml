@@ -1,6 +1,7 @@
 # Reference CI — copy to .github/workflows/ci.yml when the pushing
 # credential has the GitHub OAuth `workflow` scope.
 # (Current gh token scopes often: gist, read:org, repo — missing workflow.)
+# Actions pinned to release SHAs for supply-chain hygiene.
 
 name: CI
 
@@ -19,9 +20,9 @@ jobs:
       matrix:
         python-version: ["3.10", "3.12", "3.13"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@0b93645e9fea7318eca7822aba401aacb69ff2cb  # v5.3.0
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install package + dev deps
@@ -32,11 +33,13 @@ jobs:
         run: ruff check src tests
       - name: Pytest
         run: pytest -q
+      - name: Recorded run smoke
+        run: python scripts/recorded_run.py --quiet -o /tmp/simreach_run.jsonl
 
   secret-scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
         with:
           fetch-depth: 0
       - name: Install gitleaks
@@ -51,9 +54,9 @@ jobs:
   dependency-audit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@0b93645e9fea7318eca7822aba401aacb69ff2cb  # v5.3.0
         with:
           python-version: "3.12"
       - name: pip-audit

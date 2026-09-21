@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "simreach"
-version = "0.1.0"
+version = "0.2.0"
 description = "ROS 2 + Gazebo vision-guided approach scaffold (unit-testable core, sim-first, no hardware buys)"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -36,7 +36,7 @@ include = ["simreach_vision*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+pythonpath = ["src", "."]
 norecursedirs = [".git", ".venv", "*.egg-info", "install", "log", "build"]
 
 [tool.ruff]

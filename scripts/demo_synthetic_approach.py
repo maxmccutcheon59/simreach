@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Run a few synthetic frames through the approach controller (no ROS)."""
+"""Quick synthetic frames through the approach controller (no ROS).
+
+For a JSONL-logged multi-frame demo, prefer ``scripts/recorded_run.py``.
+"""
 
 from __future__ import annotations
 
@@ -18,7 +21,6 @@ def main() -> None:
     K = CameraIntrinsics.default_vga()
     ctrl = ApproachController(K=K, limits=SafetyLimits())
     state = ApproachState()
-    # Target starts right of center, then we "teleport" it toward center across frames
     positions = [(420, 240), (380, 240), (340, 240), (320, 240), (320, 240)]
     for i, (u, v) in enumerate(positions):
         frame = make_blank_frame(K.width, K.height)

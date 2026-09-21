@@ -2,11 +2,12 @@
 
 ## Paths
 
-| Goal | Path | Needs Gazebo? |
-|------|------|---------------|
-| Unit-test vision / approach logic | `pip install -e ".[dev]" && pytest -q` | No |
-| ROS 2 node + launch | Docker image or local ROS 2 Humble | Optional |
-| Full Gazebo world | Docker + host display / GPU as available | Yes |
+| Goal | Path | Needs Gazebo? | Needs Docker? |
+|------|------|---------------|---------------|
+| Unit-test vision / approach | `pip install -e ".[dev]" && pytest -q` | No | **No** |
+| Recorded approach demo | `python scripts/recorded_run.py` | No | **No** |
+| ROS 2 node + launch | Docker image or local ROS 2 Humble | Optional | Optional |
+| Full Gazebo world | Docker + host display / GPU as available | Yes | Recommended |
 
 ## Host (logic only — recommended first)
 
@@ -17,16 +18,17 @@ pip install -U pip
 pip install -e ".[dev]"
 pytest -q
 ruff check src tests
+python scripts/recorded_run.py -o examples/last_run.jsonl
 ```
 
-Requires Python ≥ 3.10. No ROS, Gazebo, or camera hardware.
+Requires Python ≥ 3.10. No ROS, Gazebo, camera, or Docker.
 
-## Docker (ROS 2 Humble + Gazebo packages)
+## Docker (ROS 2 Humble + Gazebo packages) — optional
 
 ```bash
-docker build -t simreach:v0.1.0 .
-docker run --rm simreach:v0.1.0 pytest -q
-docker run --rm -it simreach:v0.1.0 bash
+docker build -t simreach:v0.2.0 .
+docker run --rm simreach:v0.2.0 pytest -q
+docker run --rm -it simreach:v0.2.0 bash
 ```
 
 Inside the container (if `colcon build` succeeded during image build):
@@ -41,15 +43,15 @@ Gazebo GUI typically needs:
 
 ```bash
 xhost +local:docker   # host — understand the security implication first
-docker run --rm -it --env DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix simreach:v0.1.0 bash
+docker run --rm -it --env DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix simreach:v0.2.0 bash
 ```
 
-If Gazebo cannot run in your environment, the package layout, Dockerfile, and unit-tested `simreach_vision` core are still the supported deliverable for v0.1.0.
+If Gazebo cannot run in your environment, the package layout, optional Dockerfile, recorded-run script, and unit-tested `simreach_vision` core are the supported deliverable for v0.2.0.
 
-## Lighter alternative (documented)
+## Controller docs
 
-If Gazebo Classic is too heavy, keep using **`simreach_vision`** with synthetic frames (`make_blank_frame` / `paint_rect`) or swap the world for a lighter simulator later (e.g. Ignition/Harmonic, Webots) while reusing the same controller API. No code rewrite of the IBVS-lite core should be required.
+See [`CONTROLLER.md`](CONTROLLER.md) for IBVS-lite conventions and tuning.
 
 ## Hardware
 
-**Do not buy hardware for v0.1.0.** See `BOM.md` for a future cheap-arm research list only.
+**Do not buy hardware for v0.2.0 ($0).** See `BOM.md` for a future cheap-arm research list only.

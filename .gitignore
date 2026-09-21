@@ -58,3 +58,4 @@ worlds/**/*.cache
 
 # gitleaks
 .gitleaks-report.json
+examples/last_run.jsonl
