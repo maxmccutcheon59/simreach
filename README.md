@@ -2,10 +2,10 @@
 
 [![CI](https://github.com/maxmccutcheon59/simreach/actions/workflows/ci.yml/badge.svg)](https://github.com/maxmccutcheon59/simreach/actions/workflows/ci.yml)
 
-**SimReach** — ROS 2 + Gazebo (sim-first) **vision-guided approach** scaffold for portfolio / education.  
+**SimReach** — ROS 2 + Gazebo (sim-first) **vision-guided approach** for a robot, with a unit-tested core.  
 Author: Max McCutcheon (`@maxmccutcheon59`) · `MaxMcCutcheon1@outlook.com` · MIT
 
-> **v0.2.0 posture:** **$0 hardware.** Pure-Python `simreach_vision` is unit-tested **without Gazebo or Docker**. ROS stubs + optional Dockerfile remain for full sim. See the recorded-run example below.
+> **v0.2.0:** no hardware needed. Pure-Python `simreach_vision` is unit-tested **without Gazebo or Docker**. ROS stubs + optional Dockerfile remain for full sim. See the recorded-run example below.
 
 ## What it does
 
